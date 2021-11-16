@@ -24,11 +24,11 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:gideon.@localhost/journal_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://annalis:Ann123.@localhost/journal'
 
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:czar@localhost/journal'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://annalis:Ann123.@localhost/journal'
     DEBUG = True
 
 

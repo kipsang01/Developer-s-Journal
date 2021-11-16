@@ -1,4 +1,4 @@
 start.sh
 *.pyc
-venv/
+virtual/
 pycache/
