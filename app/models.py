@@ -36,4 +36,69 @@ class User(UserMixin,db.Model):
         return f'User {self.username}'
 
 
-# class Journal(db.Model):
+class Journal(db.Model):
+    __tablename__ = 'journals'
+
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200))
+    content = db.Column(db.String())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    category = db.Column(db.Boolean)
+    time = db.Column(db.DateTime(timezone = True), default=datetime.now)
+    notes = db.relationship('Note',backref='notes',lazy='dynamic')
+
+    def save_journald(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_journals(cls):
+        journals = Journal.query.all()
+        return journals
+
+    def __repr__(self):
+        return f'Journal {self.title}'
+
+
+class Note(db.Model):
+    __tablename__ = 'notes'
+
+    id = db.Column(db.Integer, primary_key = True)
+    notes = db.Column(db.String(255))
+    time = db.Column(db.DateTime(timezone = True), default=datetime.now)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    journal_id = db.Column(db.Integer, db.ForeignKey('journals.id'))
+
+    def save_notes(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_notes(self,id):
+        notes = Note.query.order_by(Note.time.desc()).filter_by(journal_id=id).all()
+        return notes
+
+    def __repr__(self):
+        return f'notes:{self.notes}'
+
+
+class Todo(db.Model):
+    __tablename__ = 'todos'
+
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String(200))
+    complete = db.Column(db.Boolean)
+
+    def save_todos(self):
+        db.session.add(self)
+        db.session.commit()
+
+
+    @classmethod
+    def get_todos(cls):
+        todos = Todo.query.all()
+        return todos
+
+
+    def __repr__(self):
+        return f'Todo {self.title}'
