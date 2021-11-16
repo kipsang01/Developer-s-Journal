@@ -4,7 +4,7 @@ import os
 class Config: 
 
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://annalis:Ann123.@localhost/journal'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:czar@localhost/journal'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
 
 

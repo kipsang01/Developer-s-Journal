@@ -8,7 +8,11 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
+<<<<<<< HEAD
 setenv VIRTUAL_ENV "/home/annalis/Documents/MORINGA/CORE_PROJECTS/FLASK/Developer-s-Journal/virtual"
+=======
+setenv VIRTUAL_ENV "/home/moringa/core/Flask/Developer-s-Journal/virtual"
+>>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"
@@ -17,6 +21,7 @@ setenv PATH "$VIRTUAL_ENV/bin:$PATH"
 set _OLD_VIRTUAL_PROMPT="$prompt"
 
 if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
+<<<<<<< HEAD
     if ("virtual" != "") then
         set env_name = "virtual"
     else
@@ -30,6 +35,9 @@ if (! "$?VIRTUAL_ENV_DISABLE_PROMPT") then
     endif
     set prompt = "[$env_name] $prompt"
     unset env_name
+=======
+    set prompt = "(virtual) $prompt"
+>>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
 endif
 
 alias pydoc python -m pydoc
