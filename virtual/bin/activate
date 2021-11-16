@@ -18,11 +18,7 @@ deactivate () {
     # be called to get it to forget past commands.  Without forgetting
     # past commands the $PATH changes we made may not be respected
     if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
-<<<<<<< HEAD
         hash -r
-=======
-        hash -r 2> /dev/null
->>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
     fi
 
     if [ -n "${_OLD_VIRTUAL_PS1:-}" ] ; then
@@ -41,11 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-<<<<<<< HEAD
 VIRTUAL_ENV="/home/annalis/Documents/MORINGA/CORE_PROJECTS/FLASK/Developer-s-Journal/virtual"
-=======
-VIRTUAL_ENV="/home/moringa/core/Flask/Developer-s-Journal/virtual"
->>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
@@ -62,7 +54,6 @@ fi
 
 if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
     _OLD_VIRTUAL_PS1="${PS1:-}"
-<<<<<<< HEAD
     if [ "x(virtual) " != x ] ; then
 	PS1="(virtual) ${PS1:-}"
     else
@@ -74,9 +65,6 @@ if [ -z "${VIRTUAL_ENV_DISABLE_PROMPT:-}" ] ; then
         PS1="(`basename \"$VIRTUAL_ENV\"`)$PS1"
     fi
     fi
-=======
-    PS1="(virtual) ${PS1:-}"
->>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
     export PS1
 fi
 
@@ -84,9 +72,5 @@ fi
 # be called to get it to forget past commands.  Without forgetting
 # past commands the $PATH changes we made may not be respected
 if [ -n "${BASH:-}" -o -n "${ZSH_VERSION:-}" ] ; then
-<<<<<<< HEAD
     hash -r
-=======
-    hash -r 2> /dev/null
->>>>>>> b03edb78df720f5dbe3def0ed5ea640e11a27747
 fi
