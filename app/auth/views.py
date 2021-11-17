@@ -16,7 +16,7 @@ def register():
         flash('Registered, you can now login', 'success')
         return redirect(url_for('auth.login'))
     title = "New Account"
-    return render_template('auth/register.html',form = form,title=title)
+    return render_template('auth/signup.html',form = form,title=title)
 
 #login
 @auth.route('/login',methods=['GET','POST'])
@@ -30,7 +30,7 @@ def login():
 
         flash('Invalid username or Password','danger')
 
-    title = "watchlist login"
+    title = " login"
     return render_template('auth/login.html',form = login_form,title=title)
 
 #logout user

@@ -14,7 +14,7 @@
             {% endfor %}
             {% if errors %}
               {% for error in errors %}
-                <span class="text-danger">{{ error }}</span></br>
+                <span class="text-danger">{{ error }}</span> <br>
               {% endfor %}
             {%endif%}
     <div class="card testimonial-card">
@@ -23,7 +23,7 @@
       <img src="{{profile_pic_path}}" class="rounded-circle account-img mt-3" alt="woman avatar"height="300" width="300">
     </div>
     <div class="card-body">
-      <h4 class="card-title text-center"> <p id="usern"><a href="{{url_for('main.user_posts',username = current_user.username)}}"><span><strong>{{current_user.username|title}}</strong></span> </a> </p> </h4>
+      <h4 class="card-title text-center"> <p id="usern"><a href="{{url_for('main.user_journals',username = current_user.username)}}"><span><strong>{{current_user.username|title}}</strong></span> </a> </p> </h4>
      
       
       <hr>
@@ -38,8 +38,7 @@
   <div class="col-md-6" style="padding-top: 35px;">
       <div class="container mt-4" >
         <div id="profileupdate">
-          <h2">Update Your Profile Here</h2>
-            {{wtf.quick_form(form)}}
+          <h2>Update Your Profile Here</h2>
         </div>
       </div>
   </div>

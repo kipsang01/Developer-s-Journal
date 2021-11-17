@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 from datetime import datetime
+from flask import abort
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -21,6 +22,9 @@ class User(UserMixin,db.Model):
     password_hash = db.Column(db.String(200))
     journals = db.relationship('Journal',backref='user',lazy='dynamic')
     notes= db.relationship('Note',backref='user',lazy='dynamic')
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -45,16 +49,25 @@ class Journal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category = db.Column(db.Boolean)
     time = db.Column(db.DateTime(timezone = True), default=datetime.now)
-    notes = db.relationship('Note',backref='notes',lazy='dynamic')
+    notes = db.relationship('Note',backref='journal',lazy='dynamic')
 
-    def save_journald(self):
+    def save_journal(self):
         db.session.add(self)
+        db.session.commit()
+        
+    def delete_journal(self):
+        db.session.delete(self)
         db.session.commit()
 
     @classmethod
     def get_journals(cls):
         journals = Journal.query.all()
+        if journals is None:
+            abort(404)
         return journals
+    
+    
+
 
     def __repr__(self):
         return f'Journal {self.title}'
