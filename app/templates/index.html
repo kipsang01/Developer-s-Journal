@@ -14,10 +14,10 @@
     <div style="margin-top: 50px;" class="ui container">
         <h1 class="ui center aligned header">To Do</h1>
 
-        <form class="ui form" action="/add_todo" method="post">
+        <form class="ui form" action="{{url_for('.add_todo')}}" method="POST">
             <div class="field">
                 <label>Todo Title</label>
-                <input type="text" name="title" placeholder="Enter Todo..."><br>
+                <input type="text" name="title" placeholder="Enter Todo..." required><br>
             </div>
             <button class="ui blue button" type="submit">Add</button>
         </form>
@@ -34,8 +34,8 @@
             <span class="ui green label">Completed</span>
             {% endif %}
 
-            <a class="ui blue button" href="/update_todo/{{ todo.id }}">Update</a>
-            <a class="ui red button" href="/delete_todo/{{ todo.id }}">Delete</a>
+            <a class="ui blue button" href="/update/{{todo.id}}">Update</a>
+            <a class="ui red button" href="/delete/{{todo.id}}">Delete</a>
         </div>
         {% endfor %}
     </div>
