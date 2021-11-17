@@ -1,3 +1,4 @@
+from sqlalchemy.orm import backref
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin
@@ -19,7 +20,7 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String)
     password_hash = db.Column(db.String(200))
     journals = db.relationship('Journal',backref='user',lazy='dynamic')
-
+    notes= db.relationship('Note',backref='user',lazy='dynamic')
     @property
     def password(self):
         raise AttributeError('You cannot read the password attribute')
@@ -61,9 +62,8 @@ class Journal(db.Model):
 
 class Note(db.Model):
     __tablename__ = 'notes'
-
     id = db.Column(db.Integer, primary_key = True)
-    notes = db.Column(db.String(255))
+    content = db.Column(db.String(255))
     time = db.Column(db.DateTime(timezone = True), default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     journal_id = db.Column(db.Integer, db.ForeignKey('journals.id'))
