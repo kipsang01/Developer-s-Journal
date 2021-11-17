@@ -1,33 +1,15 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf %}
-
-
-{% block content %}
-
-    <div i="particles-js" style="color: azure; padding-top: 50px;" >  
-        <div class=" row" >    
-            <div class="col-md-2"></div>
-            <div class="col-md-8" id="postform">
-                <h2 style="color: yellow; padding-bottom: 15px;" class="text-center">Here is where you create your journal..</h2>
-                {{wtf.quick_form(form)}}
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-
-   
-{% endblock%}
-
-
-<!-- {% extends 'base.html'%}
+ {% extends 'base.html'%}
 {% block content%}
 
 
 <div class="container">
-    <h2 class='text-center text-primary'>New Journal</h2>
+    <div class = "row">
+       
+        <div class = "col-md-12" style="margin-left: 150px;">
+            <h3 style="color:yellow; padding-top: 50px;" class="text-center"><i class="fas fa-book-open"></i></i>&nbsp;<strong>New Journal</strong></h3>
   <form method="POST" action=""  class="">
    {{ form.csrf_token }}
-   <div class="label form-label text-center text-danger">
+   <div class="label form-label text-center" style="color: azure;">
     {{ form.title.label  }}
    </div>
    
@@ -35,7 +17,7 @@
        {{ form.title (class='form-control')}} 
    </div>
 
-   <div class="label form-label text-center text-danger">
+   <div class="label form-label text-center" style="color: azure;">
     {{ form.content.label  }}
     
    </div>
@@ -50,9 +32,12 @@
 
    <br>
    <div >
-         {{form.submit (class='btn btn-primary w-10') }}
+         {{form.submit (class='btn btn-warning w-10') }}
          </div>
       
  </form>
 </div>
-{% endblock%} -->
+
+ </div>
+</div>
+{% endblock%}
