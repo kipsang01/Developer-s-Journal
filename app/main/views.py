@@ -77,3 +77,24 @@ def update_journal(journal_id):
         form.content.data = journal.content
 
     return render_template('update_journal.html', form = form)
+
+
+
+@main.route('/create-notes/<journal_id>', methods = ['GET','POST'])
+@login_required
+def create_notes(journal_id):
+
+    form = NotesForm()
+    journal = Journal.query.filter_by(id=journal_id).first()
+
+    if not journal:
+        abort(404)
+
+    if form.validate_on_submit():
+        notes = form.notes.data
+
+        new_note = Note(notes=notes,user_id=current_user.id,journal_id=journal.id)
+        new_note.save_notes()
+        return redirect(url_for('.journal', id=journal.id))
+
+    return render_template('create_notes.html',form = form)
