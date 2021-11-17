@@ -9,7 +9,7 @@ from ..models import User,Journal,Note,Todo
 @main.route('/')
 def index():
     todo_list = Todo.query.all()
-    return render_template('base.html',todo_list=todo_list)
+    return render_template('index.html',todo_list=todo_list)
 
 
 @main.route('/add-todo', methods=['POST'])
@@ -22,7 +22,7 @@ def add_todo():
     return redirect(url_for('index'))
 
 
-@main.route('update/<todo_id>')
+@main.route('/update/<todo_id>')
 def update_todo(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
@@ -30,7 +30,7 @@ def update_todo(todo_id):
     return redirect(url_for('index'))
 
 
-@main.route('delete/<todo_id>')
+@main.route('/delete/<todo_id>')
 def delete_todo(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)

@@ -45,7 +45,7 @@ class Journal(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category = db.Column(db.Boolean)
     time = db.Column(db.DateTime(timezone = True), default=datetime.now)
-    notes = db.relationship('Note',backref='notes',lazy='dynamic')
+    notes = db.relationship('Note',backref='journal',lazy='dynamic')
 
     def save_journald(self):
         db.session.add(self)
