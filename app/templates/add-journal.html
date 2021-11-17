@@ -27,19 +27,26 @@
     <h2 class='text-center text-primary'>New Journal</h2>
   <form method="POST" action=""  class="">
    {{ form.csrf_token }}
-   <div class=" shadow-sm p-3 mb-2 bg-body rounded">
-       {{ form.title.label (class='form-label') }} {{ form.title (class='form-control')}} 
+   <div class="label form-label text-center text-danger">
+    {{ form.title.label  }}
+   </div>
+   
+   <div class=" shadow-sm  mb-2 bg-body rounded">
+       {{ form.title (class='form-control')}} 
    </div>
 
-   <label for="exampleFormControlTextarea1" class="form-label" style="color: white;">Comment</label>
-   <textarea class="form-control rounded" rows="5">
-       {{ form.content.label }} {{ form.content}}
-   </textarea>
+   <div class="label form-label text-center text-danger">
+    {{ form.content.label  }}
+    
+   </div>
+   <div class="">
+    {{ form.content (class = "form-control") }}
+   </div>
+   
+
   
 
-   <div class=" " style="color: white;" style="padding: 10%;">
-    {{ form.category.label (class='form-check-label') }} {{ form.category (class='form-check-input')}}
-</div>
+ 
 
    <br>
    <div >
