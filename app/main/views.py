@@ -1,4 +1,4 @@
-from flask import render_template,request,redirect,url_for,abort
+from flask import render_template,request,flash,redirect,url_for,abort
 from . import main
 from .. import db,photos
 from ..models import User,Journal,Note,Todo
@@ -98,3 +98,23 @@ def create_notes(journal_id):
         return redirect(url_for('.journal', id=journal.id))
 
     return render_template('create_notes.html',form = form)
+
+
+
+@main.route('/delete-journal/<id>')
+@login_required
+def delete_journal(id):
+    journal = Journal.query.filter_by(id=id).first()
+
+    if journal is  None:
+        abort(404)
+
+    elif current_user.id != journal.id:
+        flash('You do not have permission to delete this journal!')
+
+    else:
+        db.session.delete(journal)
+        db.session.commit()
+        flash('Journal deleted successfully!')
+
+    return redirect(url_for('.index'))
