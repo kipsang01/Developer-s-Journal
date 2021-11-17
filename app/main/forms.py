@@ -5,8 +5,8 @@ from wtforms.validators import InputRequired, Email
 
 
 class JournalForm(FlaskForm):
-    title =  StringField('Title:',validators = [InputRequired()])
-    content = TextAreaField('Content:',validators = [InputRequired()])
+    title =  StringField('Enter here the title..',validators = [InputRequired()])
+    content = TextAreaField('Enter  here the content..',validators = [InputRequired()])
     category = BooleanField('Private')
     submit = SubmitField('Submit')
     
