@@ -32,6 +32,7 @@ def create_app(config_name):
     mail.init_app(app)
     migrate.init_app(app,db)
 
+
     # Registering the blueprint
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
