@@ -14,32 +14,6 @@ def index():
     return render_template('index.html',todo_list=todo_list)
 
 
-@main.route('/add-todo', methods=['POST'])
-def add_todo():
-    title = request.form.get('title')
-    new_todo = Todo(title=title, complete = False)
-
-    db.session.add(new_todo)
-    db.session.commit()
-    return redirect(url_for('.index'))
-
-
-@main.route('/update/<todo_id>')
-def update_todo(todo_id):
-    todo = Todo.query.filter_by(id=todo_id).first()
-    todo.complete = not todo.complete
-    db.session.commit()
-    return redirect(url_for('.index'))
-
-
-@main.route('/delete/<todo_id>')
-def delete_todo(todo_id):
-    todo = Todo.query.filter_by(id=todo_id).first()
-    db.session.delete(todo)
-    db.session.commit()
-    return redirect(url_for('.index'))
-
-
 
 
 @main.route('/create-journal', methods=['GET','POST'])
@@ -117,4 +91,32 @@ def delete_journal(id):
         db.session.commit()
         flash('Journal deleted successfully!')
 
+    return redirect(url_for('.index'))
+
+
+
+@main.route('/add-todo', methods=['POST'])
+def add_todo():
+    title = request.form.get('title')
+    new_todo = Todo(title=title, complete = False)
+
+    db.session.add(new_todo)
+    db.session.commit()
+    return redirect(url_for('.index'))
+
+
+@main.route('/update/<todo_id>')
+def update_todo(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    todo.complete = not todo.complete
+    db.session.commit()
+    return redirect(url_for('.index'))
+
+
+
+@main.route('/delete/<todo_id>')
+def delete_todo(todo_id):
+    todo = Todo.query.filter_by(id=todo_id).first()
+    db.session.delete(todo)
+    db.session.commit()
     return redirect(url_for('.index'))
