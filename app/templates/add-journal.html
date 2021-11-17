@@ -1,0 +1,30 @@
+{% extends 'base.html'%}
+{% block content%}
+
+
+<div class="container">
+    <h2 class='text-center text-primary'>New Journal</h2>
+  <form method="POST" action=""  class="">
+   {{ form.csrf_token }}
+   <div class=" shadow-sm p-3 mb-2 bg-body rounded">
+       {{ form.title.label (class='form-label') }} {{ form.title (class='form-control')}} 
+   </div>
+
+   <label for="exampleFormControlTextarea1" class="form-label" style="color: white;">Comment</label>
+   <textarea class="form-control rounded" rows="5">
+       {{ form.content.label }} {{ form.content}}
+   </textarea>
+  
+
+   <div class=" " style="color: white;" style="padding: 10%;">
+    {{ form.category.label (class='form-check-label') }} {{ form.category (class='form-check-input')}}
+</div>
+
+   <br>
+   <div >
+         {{form.submit (class='btn btn-primary w-10') }}
+         </div>
+      
+ </form>
+</div>
+{% endblock%}

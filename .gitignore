@@ -1,5 +1,4 @@
-start.sh
-virtual/
-*.pyc
 
-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
+virtual/
+__pycache__/
+migrations/
