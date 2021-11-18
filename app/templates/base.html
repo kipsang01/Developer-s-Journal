@@ -63,13 +63,13 @@
           {% block content %}
 
               <ul class="list-group">
-                <h2 Class="text-center">My Journals</h2>
+                <h2 style="color: yellow;" class="text-center">My Journals</h2>
                 {% if journals %}
                 {%for journal in journals%}
-                <li class="list-group-item list-group-item-light"><a href="url_for('main.journal', journal_id = journal.id )"> {{ journal.title}}</a> <br>{{ journal.content}}
+                <li><a style="color: yellow; font-size: larger; padding-left: 50px;" href="url_for('main.journal', journal_id = journal.id )"> {{ journal.title}}</a> <br><div style="color: azure;" >{{ journal.content}}</div>
                   <div>
-                    <a class = "btn btn-success" href="{{ url_for('main.journal', journal_id = journal.id )}}">add notes</a>
-                    <a class = "btn btn-success" href="{{ url_for('main.update_journal', journal_id = journal.id )}}">Edit</a>
+                    <a class = "btn btn-warning" href="{{ url_for('main.journal', journal_id = journal.id )}}">add notes</a>
+                    <a class = "btn btn-warning" href="{{ url_for('main.update_journal', journal_id = journal.id )}}">Edit</a>
                     <a class="btn btn-danger" href="{{ url_for('main.delete_journal', journal_id = journal.id )}}">delete</a>
                   </div>
                 </li>
@@ -83,7 +83,7 @@
         </div>
         <div class="col-md-4">
           <div class="">
-            <h3 Class ="text-center">To Do's</h3>
+            <h3 style="color: yellow;" class ="text-center">To Do's</h3>
             <form method="POST" action=""  >
               {{ form.csrf_token }}
               <div class=" shadow-sm p-3 mb-2 bg-body rounded">
@@ -104,19 +104,23 @@
               </ul>
             </p> -->
             <hr>
-            <h3 class="text-center">My To Do's</h3>
+            <h3 style="color: yellow;" class="text-center">My To Do's</h3>
             {% for todo in todos %}
-            <div class="list-group-item list-group-item-light">
-                <p class="ui big header">{{ todo.title }}</p>
+            <div style="margin-left: 150px;">
+                <p style="color: azure; padding-top: 5px; font-size: larger;" class="ui big header">{{ todo.title }}</p>
+                <div>
 
                 {% if todo.complete == False %}
-                <span class="ui gray label">Not Complete</span>
+                <span style="color: yellow;" class="ui gray label">Not Complete</span>
                 {% else %}
                 <span class="ui green label">Completed</span>
                 {% endif %}
+                <div style="justify-items: center;">
 
-                <a class="btn btn-success" href="{{ url_for('main.update_todo', todo_id = todo.id )}}">Update</a>
+                <a class="btn btn-warning" href="{{ url_for('main.update_todo', todo_id = todo.id )}}">Update</a>
                 <a class="btn btn-danger" href="{{ url_for('main.delete_todo', todo_id = todo.id )}}">Delete</a>
+              </div>
+              </div>
             </div>
             {% endfor %}
           </div>
