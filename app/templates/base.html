@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="https://image.shutterstock.com/z/stock-vector-book-outline-icon-vector-illustration-isolated-sign-symbol-black-and-white-style-in-transparent-1879488385.jpg">
     
 
     {% if title %}
@@ -50,7 +51,7 @@
     </header>
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-7">
           {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
               {% for category, message in messages %}
@@ -62,7 +63,7 @@
           {% endwith %}
           {% block content %}
 
-              <ul class="list-group">
+              <ul class="list-group" style="align-items: center;padding-top: 35px;">
                 <h2 style="color: yellow;" class="text-center">My Journals</h2>
                 {% if journals %}
                 {%for journal in journals%}
@@ -83,13 +84,14 @@
         </div>
         <div class="col-md-4">
           <div class="">
-            <h3 style="color: yellow;" class ="text-center">To Do's</h3>
+            <h3 style="color: yellow;padding-top: 35px;" class ="text-center">To Do's</h3>
             <form method="POST" action=""  >
               {{ form.csrf_token }}
-              <div class=" shadow-sm p-3 mb-2 bg-body rounded">
+              <div style="color: yellow; text-align: center;">
                   {{ form.title.label (class='form-label') }} {{ form.title (class='form-control')}} 
               </div>
-                  {{form.submit (class='btn btn-primary w-100')}}
+              <br>
+                  {{form.submit (class='btn btn-warning w-100')}}
             </form>
             <br>
             <!-- <p class='text-muted'>To do's
