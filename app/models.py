@@ -76,7 +76,7 @@ class Journal(db.Model):
 class Note(db.Model):
     __tablename__ = 'notes'
     id = db.Column(db.Integer, primary_key = True)
-    content = db.Column(db.String(255))
+    notes = db.Column(db.String(255))
     time = db.Column(db.DateTime(timezone = True), default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     journal_id = db.Column(db.Integer, db.ForeignKey('journals.id'))

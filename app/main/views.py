@@ -1,9 +1,10 @@
 
+
 from flask import render_template,request,redirect,url_for,abort,flash
 from . import main
 from .. import db,photos
 from ..models import User,Journal,Note,Todo
-from . forms import JournalForm, TodoForm
+from . forms import JournalForm, TodoForm,NotesForm
 from flask_login import login_user,logout_user,login_required,current_user
 
 
@@ -11,7 +12,6 @@ from flask_login import login_user,logout_user,login_required,current_user
 
 
 @main.route('/',methods=['GET', 'POST'])
-@main.route('/home', methods=['GET', 'POST'])
 def home():
     journals = Journal.get_journals()
     form = TodoForm()
@@ -58,13 +58,36 @@ def update_journal(journal_id):
         journal.title = form.title.data
         journal.content = form.content.data
         db.session.commit()
+
         return redirect(url_for('.home'))
     
     if request.method =='GET':
         form.title.data = journal.title
         form.content.data = journal.content
 
+
     return render_template('add-journal.html', form = form)
+
+
+
+@main.route('/create-notes/<journal_id>', methods = ['GET','POST'])
+@login_required
+def create_notes(journal_id):
+
+    form = NotesForm()
+    journal = Journal.query.filter_by(id=journal_id).first()
+
+    if not journal:
+        abort(404)
+
+    if form.validate_on_submit():
+        notes = form.notes.data
+
+        new_note = Note(notes=notes,user_id=current_user.id,journal_id=journal.id)
+        new_note.save_notes()
+        return redirect(url_for('.journal', id=journal.id))
+
+    return render_template('create_notes.html',form = form)
 
 
 @main.route('/<journal_id>/delete', methods=['POST','GET'])
@@ -74,6 +97,8 @@ def delete_journal(journal_id):
     db.session.commit()
     flash('Deleted successfully','danger')
     return redirect(url_for('.home'))
+
+
 
 @main.route('/about')
 def about():
@@ -96,6 +121,7 @@ def add_todo():
 
     db.session.add(new_todo)
     db.session.commit()
+
     return redirect(url_for('.home'))
 
 
@@ -104,6 +130,7 @@ def update_todo(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     todo.complete = not todo.complete
     db.session.commit()
+
     return redirect(url_for('.home'))
 
 
@@ -114,4 +141,3 @@ def delete_todo(todo_id):
     db.session.commit()
     flash('Deleted successfully','danger')
     return redirect(url_for('.home'))
-
