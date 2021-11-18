@@ -76,7 +76,7 @@ def journal(journal_id):
 
     form = NotesForm()
     journal = Journal.query.filter_by(id=journal_id).first()
-    notes = Note.query.filter_by(journal_id = journal_id).first()
+    notes = Note.query.filter_by(journal_id = journal_id).all()
     if not journal:
         abort(404)
 
