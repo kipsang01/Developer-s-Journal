@@ -5,7 +5,7 @@ class Config:
 
     SECRET_KEY = 'journal'
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:czar@localhost/journal'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:gideon.@localhost/journal'
 
 
     UPLOADED_PHOTOS_DEST ='app/static/photos'
@@ -28,10 +28,10 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:czar@localhost/journal'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:gideon.@localhost/journal_test'
     
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:czar@localhost/journal'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://access:gideon.@localhost/journal'
     DEBUG = True
 
 
