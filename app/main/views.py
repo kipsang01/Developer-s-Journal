@@ -66,7 +66,7 @@ def update_journal(journal_id):
         form.content.data = journal.content
 
 
-    return render_template('update_journal.html', form = form)
+    return render_template('add-journal.html', form = form)
 
 
 
