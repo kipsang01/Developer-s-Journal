@@ -61,29 +61,25 @@
             {% endif %}
           {% endwith %}
           {% block content %}
-              <ul class="list-group">
-                <h2 Class="text-center">My Journals</h2>
-                {% if journals %}
-                {%for journal in journals%}
-                <li class="list-group-item list-group-item-light">{{ journal.title}} <br>{{ journal.content}}
-                  <a class = "btn btn-success" href="{{ url_for('main.update_journal', journal_id = journal.id )}}">Edit</a>
-                  <a class="btn btn-danger" href="{{ url_for('main.delete_journal', journal_id = journal.id )}}">delete</a>
-                </li>
-                <br>
-                <hr>
-                {%endfor%}
-                {% else %}
-                <li class="list-group-item list-group-item-light">There are no journals</li>
-                {% endif %}
-              </ul>
-
-
-
-        
+            <ul class="list-group">
+              <h2 Class="text-center">My Journals</h2>
+              {% if journals %}
+              {%for journal in journals%}
+              <li class="list-group-item list-group-item-light">{{ journal.title}} <br>{{ journal.content}}
+                <a class = "btn btn-success" href="{{ url_for('main.update_journal', journal_id = journal.id )}}">Edit</a>
+                <a class="btn btn-danger" href="{{ url_for('main.delete_journal', journal_id = journal.id )}}">delete</a>
+              </li>
+              <br>
+              <hr>
+              {%endfor%}
+              {% else %}
+              <li class="list-group-item list-group-item-light">There are no journals</li>
+              {% endif %}
+            </ul>
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>To Do's</h3>
+          <div class="">
+            <h3 Class ="text-center">To Do's</h3>
             <form method="POST" action=""  >
               {{ form.csrf_token }}
               <div class=" shadow-sm p-3 mb-2 bg-body rounded">
@@ -91,9 +87,8 @@
               </div>
                   {{form.submit (class='btn btn-primary w-100')}}
             </form>
-
-
-
+            <br>
+            <br>
             <!-- <p class='text-muted'>To do's
               <ul class="list-group">
                 {% if todos%}
@@ -105,33 +100,27 @@
                 {% endif %}
               </ul>
             </p> -->
-
-
+            <hr>
             <h3 class="text-center">My To Do's</h3>
             {% for todo in todos %}
-        <div class="ui segment">
-            <p class="ui big header">{{ todo.title }}</p>
+            <div class="list-group-item list-group-item-light">
+                <p class="ui big header">{{ todo.title }}</p>
 
-            {% if todo.complete == False %}
-            <span class="ui gray label">Not Complete</span>
-            {% else %}
-            <span class="ui green label">Completed</span>
-            {% endif %}
+                {% if todo.complete == False %}
+                <span class="ui gray label">Not Complete</span>
+                {% else %}
+                <span class="ui green label">Completed</span>
+                {% endif %}
 
-            <a class="btn btn-success" href="{{ url_for('main.update_todo', todo_id = todo.id )}}">Update</a>
-            <a class="btn btn-danger" href="{{ url_for('main.delete_todo', todo_id = todo.id )}}">Delete</a>
-        </div>
-        {% endfor %}
-
-
-
+                <a class="btn btn-success" href="{{ url_for('main.update_todo', todo_id = todo.id )}}">Update</a>
+                <a class="btn btn-danger" href="{{ url_for('main.delete_todo', todo_id = todo.id )}}">Delete</a>
+            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
     </main>
     {% endblock %}
-
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
