@@ -1,30 +1,43 @@
-{% extends 'base.html'%}
+ {% extends 'base.html'%}
 {% block content%}
 
 
 <div class="container">
-    <h2 class='text-center text-primary'>New Journal</h2>
+    <div class = "row">
+       
+        <div class = "col-md-12" style="margin-left: 150px;">
+            <h3 style="color:yellow; padding-top: 50px;" class="text-center"><i class="fas fa-book-open"></i></i>&nbsp;<strong>New Journal</strong></h3>
   <form method="POST" action=""  class="">
    {{ form.csrf_token }}
-   <div class=" shadow-sm p-3 mb-2 bg-body rounded">
-       {{ form.title.label (class='form-label') }} {{ form.title (class='form-control')}} 
+   <div class="label form-label text-center" style="color: azure;">
+    {{ form.title.label  }}
+   </div>
+   
+   <div class=" shadow-sm  mb-2 bg-body rounded">
+       {{ form.title (class='form-control')}} 
    </div>
 
-   <label for="exampleFormControlTextarea1" class="form-label" style="color: white;">Comment</label>
-   <textarea class="form-control rounded" rows="5">
-       {{ form.content.label }} {{ form.content}}
-   </textarea>
+   <div class="label form-label text-center" style="color: azure;">
+    {{ form.content.label  }}
+    
+   </div>
+   <div class="">
+    {{ form.content (class = "form-control") }}
+   </div>
+   
+
   
 
-   <div class=" " style="color: white;" style="padding: 10%;">
-    {{ form.category.label (class='form-check-label') }} {{ form.category (class='form-check-input')}}
-</div>
+ 
 
    <br>
    <div >
-         {{form.submit (class='btn btn-primary w-10') }}
+         {{form.submit (class='btn btn-warning w-10') }}
          </div>
       
  </form>
+</div>
+
+ </div>
 </div>
 {% endblock%}

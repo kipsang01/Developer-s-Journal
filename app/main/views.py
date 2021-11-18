@@ -31,6 +31,7 @@ def home():
 
 
 @main.route('/add-journal', methods=['GET', 'POST'])
+@login_required
 def add_journal():
     form = JournalForm()
     if request.method=='POST':
@@ -45,7 +46,7 @@ def add_journal():
 
 
 
-@main.route('/journal/<post_id>/update',methods=['GET','POST'])
+@main.route('/journal/<journal_id>/update',methods=['GET','POST'])
 @login_required
 def update_journal(journal_id):
     journal = Journal.query.get(journal_id)
@@ -57,11 +58,13 @@ def update_journal(journal_id):
         journal.title = form.title.data
         journal.content = form.content.data
         db.session.commit()
-        return redirect(url_for('.index',id = journal.id))
+
+        return redirect(url_for('.home'))
     
     if request.method =='GET':
         form.title.data = journal.title
         form.content.data = journal.content
+
 
     return render_template('update_journal.html', form = form)
 
@@ -87,13 +90,13 @@ def create_notes(journal_id):
     return render_template('create_notes.html',form = form)
 
 
-
 @main.route('/<journal_id>/delete', methods=['POST','GET'])
 def delete_journal(journal_id):
-    del_journal = Journal.query.filter_by(id=journal_id).first()
-    del_journal.delete_journal()
+    journal = Journal.query.filter_by(id=journal_id).first()
+    db.session.delete(journal)
+    db.session.commit()
     flash('Deleted successfully','danger')
-    return redirect(url_for('.add_journal'))
+    return redirect(url_for('.home'))
 
 
 
@@ -131,9 +134,10 @@ def update_todo(todo_id):
     return redirect(url_for('.home'))
 
 
-@main.route('/delete/<todo_id>')
+@main.route('/todo/delete/<todo_id>', methods=['POST','GET'])
 def delete_todo(todo_id):
     todo = Todo.query.filter_by(id=todo_id).first()
     db.session.delete(todo)
     db.session.commit()
+    flash('Deleted successfully','danger')
     return redirect(url_for('.home'))
