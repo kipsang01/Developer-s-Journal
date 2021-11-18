@@ -66,7 +66,7 @@
                 <h2 Class="text-center">My Journals</h2>
                 {% if journals %}
                 {%for journal in journals%}
-                <li class="list-group-item list-group-item-light"><a href="url_for('main.journal', journal_id = journal.id )"> {{ journal.title}}</a> <br>{{ journal.content}}
+                <li class="list-group-item list-group-item-light"><a href="url_for('main.journal', journal_id = journal.id )"> <strong>{{ journal.title}}</strong></a> <br>{{ journal.content}}
                   <div>
                     <a class = "btn btn-success" href="{{ url_for('main.journal', journal_id = journal.id )}}">add notes</a>
                     <a class = "btn btn-success" href="{{ url_for('main.update_journal', journal_id = journal.id )}}">Edit</a>
@@ -107,7 +107,7 @@
             <h3 class="text-center">My To Do's</h3>
             {% for todo in todos %}
             <div class="list-group-item list-group-item-light">
-                <p class="ui big header">{{ todo.title }}</p>
+                <p class="ui big header"><strong>{{ todo.title }}</strong></p>
 
                 {% if todo.complete == False %}
                 <span class="ui gray label">Not Complete</span>
