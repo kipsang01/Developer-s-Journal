@@ -70,24 +70,24 @@ def update_journal(journal_id):
 
 
 
-@main.route('/create-notes/<journal_id>', methods = ['GET','POST'])
+@main.route('/journal/<journal_id>', methods = ['GET','POST'])
 @login_required
-def create_notes(journal_id):
+def journal(journal_id):
 
     form = NotesForm()
     journal = Journal.query.filter_by(id=journal_id).first()
-
+    notes = Note.query.filter_by(journal_id = journal_id).first()
     if not journal:
         abort(404)
 
     if form.validate_on_submit():
-        notes = form.notes.data
+        note = form.notes.data
 
-        new_note = Note(notes=notes,user_id=current_user.id,journal_id=journal.id)
+        new_note = Note(notes=note,user_id=current_user.id,journal_id=journal.id)
         new_note.save_notes()
-        return redirect(url_for('.journal', id=journal.id))
+        return redirect(url_for('.journal', journal_id=journal.id))
 
-    return render_template('create_notes.html',form = form)
+    return render_template('journals.html',form = form, journal=journal, notes=notes)
 
 
 @main.route('/<journal_id>/delete', methods=['POST','GET'])
