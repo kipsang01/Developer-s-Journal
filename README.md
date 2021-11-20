@@ -1,6 +1,12 @@
 # Developer's Journal
 
-#### Created By Annalis.K,Brian.M,Dan.M,Enock.K,Gideon.N,Rhonajoy.K
+#### Created By:   
+* Annalis.K  
+* Brian.M  
+* Dan.M  
+* Enock.K  
+* Gideon.N  
+* Rhonajoy.K
 
 ## Description
 
@@ -12,7 +18,8 @@ A web application that allows software developers to note down on the errors and
 - Github
 - Flask(0.12.2)
 - Pip
-- Python 3.8
+- Python 3.8  
+- Postgres
 
 ## Setup Installation
 
@@ -51,7 +58,7 @@ chmod a+x start.sh
 
 ## Technologies Used
 
-The following languages have been used on this project:
+The following technologies have been used on this project:
 
 - HTML
 - CSS
@@ -59,6 +66,7 @@ The following languages have been used on this project:
 - Python
 - Flask
 - Heroku
+- Postgres
 
 ## Setup/Installation Requirements
 
@@ -67,7 +75,7 @@ The following languages have been used on this project:
 
 ## Known Bugs
 
- no bugs found in the project
+ There are no known bugs in this project so far
 
 ## Support and contact details 
 
